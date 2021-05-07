@@ -1,0 +1,35 @@
+.navmio{
+	background:#ff0080;	
+	padding: 8px 16px 8px 16px;
+	text-align: center;
+	
+}
+.bloque{
+	width:100%;
+	padding-righ:15px;
+	padding-left: 15px;
+	margin-righ:auto; 
+	margin-left: auto ;
+	height: 550px;
+	left:90px;
+	
+}
+.p1{
+	background-image: url("/img/1.jpg");
+	background-position: center ceter;
+	background-repeat:no-repeat;
+	background-attachment: fixe;
+	background-size: cover;
+}
+body{
+	background:gray;
+	background-position: center ceter;
+	background-repeat:no-repeat;
+	background-attachment: fixe;
+	background-size: cover;
+}
+.columna{
+	position:sticky;
+	left: 0;
+	background:   #ffd7e1;
+}
