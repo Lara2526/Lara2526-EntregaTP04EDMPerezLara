@@ -87,22 +87,22 @@
 						<td th:text="${p.precio}">
 						<td th:text="${p.marca}"></td>
 						<td th:text="${p.stock}"></td>
-						<td><a href="#" th:href="@{'/producto/editar/'+${p.codProducto}}"> <i class="fa fa-edit"></i></a>
-						<!--	
-					
-				  	<a th:onclick="'javascript:confirmarEliminar(\''+${p.codProducto}+'\');'"><i class="fa fa-trash-alt"></i></a>
-					<a th:onclick="'javascript:confirmarEliminar(\''+${cli.nroDocumento}+'\');'"><i class="fa fa-trash-alt"></i></a>
-					</td>
-					link
-					https://fontawesome.com/icons?d=gallery&p=2&m=free
-					-->
+						<td>
+							<a href="#" th:href="@{'/producto/editar/'+${p.codProducto}}"> <i class="fa fa-edit"></i></a>
+							<a th:onclick="'javascript:confirmarEliminar(\''+${p.codProducto}+'\');'"><i class="fa fa-trash-alt"></i></a>
+							<!--	
+							link
+							https://fontawesome.com/icons?d=gallery&p=2&m=free
+							-->
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<!-- --------------
+	
 		
-		<!--Modal Eliminar
+		<!--Modal Eliminarme FALTA AQUI
+	-->
 		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -114,45 +114,43 @@
 						</button>
 						</div>
 							<div class="modal-body">
-							<h6>Are you sure you want to delete this user?</h6>
+							<h6>Are you sure you want to delete this producto?</h6>
 							</div>
-							//<input type="hidden" id="identificadorUsuarioHiddenInput" name="userIdHiddenInput"/>
-							//<input type="hidden" id="identificadorProducto" name="identificadorProducto"/>
-							<input type="hidden" id="identificadorProducto" productoId"/>
+							<input type="hidden" id="identificadorProducto" name="productoId"/>
+							
 							<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"	data-dismiss="modal">Close</button>
-						//<button type="button" class="btn btn-primary" th:onclick="eliminarUsuario()">Delete User</button>
-						<button type="button" class="btn btn-primary" th:onclick="eliminarproducto()">Delete User</button>
+					
+						<button type="button" class="btn btn-primary" th:onclick="eliminarProducto()">Delete Producto</button>
 						 
 						</div>
 					</div>
 				</div>
 			</div>
 	
-	me FALTA AQUI
-	-->
+	
 	
 
 
 
 		<div th:insert="layouts/footer :: footer"></div>
 	</div>
-	<!--  
+	
 	<script type="text/javascript">
 		function confirmarEliminar(id) {
 			$('#modalEliminar').modal('show');
-			//$("#identificadorUsuarioHiddenInput").val(id);
+			
 		$("#identificadorProducto").val(id);
 		
 		}
 
-		function eliminarUsuario() {
-			//var id = $("#identificadorUsuarioHiddenInput").val();
+		function eliminarProducto() {
+			
 			var id = $("#identificadorProducto").val();
-			window.location = "eliminarCliente/" + id;
+			window.location = "eliminarProducto/" + id;
 		}
 	</script>
--->
+
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"

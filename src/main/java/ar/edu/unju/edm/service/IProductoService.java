@@ -19,6 +19,6 @@ public interface IProductoService {
 	public Producto obtenerUltimoProducto();
 	public Producto encontrarUnProducto(int cod);
 	public void modificarProducto(Producto productoAModificar);
+	public void eliminarProducto(int id);
 	
-	//pulic void eliminarproducto(int id); 
 }

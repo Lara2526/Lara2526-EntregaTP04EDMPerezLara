@@ -88,31 +88,23 @@ IProductoService iProductoService;
 		
 		return("redirect:/producto");
 	}
-	
-	
-	/** producto
-	 * @GetMapping("/cliente/eliminarProducto/{id}")
+	@GetMapping("/producto/eliminarProducto/{id}")
 	public String eliminarProducto(Model model, @PathVariable(name="id") int id) {		
-		try {			clienteService.eliminarProducto(id);			
+		try {			iProductoService.eliminarProducto(id);			
 		}
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
 		}			
 		return "redirect:/producto/mostrar";
 	}
+	
+	/** producto
 	 * 
 	 * 
 	 * 
 	 * 
-	 * @GetMapping("/cliente/eliminarCliente/{id}")
-	public String eliminarCliente(Model model, @PathVariable(name="id") int id) {		
-		try {			clienteService.eliminarCliente(id);			
-		}
-		catch(Exception e){
-			model.addAttribute("listErrorMessage",e.getMessage());
-		}			
-		return "redirect:/cliente/mostrar";
-	}
+	 * 
+	 * 
 	 * */
 	
 	}
