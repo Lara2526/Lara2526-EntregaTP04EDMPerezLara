@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import ar.edu.unju.edm.model.Producto;
 import ar.edu.unju.edm.service.IProductoService;
@@ -30,9 +32,48 @@ IProductoService iProductoService;
 	public String nuevoUsuarioPost(@ModelAttribute("unProducto") Producto nuevoProducto, Model model) {
 		iProductoService.guardarProducto(nuevoProducto);
 		System.out.println(iProductoService.obtenerTodosProductos().get(0).getMarca());
-		model.addAttribute("productos",iProductoService.obtenerTodosProductos());
+	
 		LARA.error("solo de prueba");
 		return "redirect:/producto/mostrar";
+	}
+	@GetMapping("/producto/editar/{codProducto}")
+	public String editarCliente(Model model, @PathVariable(name="codProducto") int cod) throws Exception 
+	{
+		try {
+			Producto productoEncontrado = iProductoService.encontrarUnProducto(cod);
+			model.addAttribute("unProducto", productoEncontrado);
+			model.addAttribute("editMode", "true");
+		}
+		catch (Exception e) {
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unProducto", iProductoService.obtenerProductoNuevo());
+			model.addAttribute("editMode", "false");
+		
+		
+		}
+		model.addAttribute("productos", iProductoService.obtenerTodosProductos());
+		return("producto");
+		}
+	@PostMapping("/producto/modificar")
+	public String modificarCliente(@ModelAttribute("unProducto") Producto productoAModificar, Model model) {
+	
+	try {
+				iProductoService.modificarProducto(productoAModificar);
+				model.addAttribute("unProducto", new Producto());				
+				model.addAttribute("editMode", "false");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				// pasar las excepciones al html
+				model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+				model.addAttribute("unProducto", productoAModificar);			
+				model.addAttribute("productos", iProductoService.obtenerTodosProductos());
+				model.addAttribute("editMode","true");
+				
+			
+		
+		}
+	model.addAttribute("productos", iProductoService.obtenerTodosProductos());
+	return("producto");
 	}
 	
 	@GetMapping("/ultimo")

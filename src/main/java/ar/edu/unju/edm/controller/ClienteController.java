@@ -6,6 +6,7 @@ package ar.edu.unju.edm.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,13 @@ public class ClienteController {
 
 	//@Autowired("unImp")
 	@Autowired()
+	//@Qualidier("implementacionmysql")
 	IClienteService clienteService;
-
+//	@Qualifier("ClienteServiceImp")
+	
+//	@Autowired()
+//	@Qualifier("OtraImp")
+//	IClienteService otroClienteService;
 	@GetMapping("/cliente/mostrar")
 	public String cargarCliente(Model model) {
 		model.addAttribute("unCliente", clienteService.crearCliente());
@@ -33,7 +39,7 @@ public class ClienteController {
 
 	@PostMapping("/cliente/guardar")
 	public String guardarNuevoProducto(@ModelAttribute("unCliente") Cliente nuevoCliente, Model model) {
-		LOGGER.info("METHOD: ingresando el metodo Guardar");
+		LOGGER.info("METHOD: ingresando el metodo Guardar");	
 		clienteService.guardarCliente(nuevoCliente);		
 		LOGGER.info("Tamaño del Listado: "+ clienteService.obtenerTodosClientes().size());
 		//trabajarConFecha();

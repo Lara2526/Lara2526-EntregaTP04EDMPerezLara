@@ -40,11 +40,7 @@ public class ProductoServiceImp implements IProductoService {
 		LOGGER.info("RESULT: guardado " + listaDeProductos.get(listaDeProductos.size()-1).getNombre());
 	}
 
-	@Override
-	public void modificarProducto(Producto productoAModificar) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void eliminarUnProducto(Producto productoAEliminar) {
@@ -78,6 +74,26 @@ public class ProductoServiceImp implements IProductoService {
 	int i = listaDeProductos.size() - 1;
 		return listaDeProductos.get(i);
 	}
+	@Override
+	public Producto encontrarUnProducto(int cod) {
+		for (int i = 0; i < listaDeProductos.size(); i++){
+		    if (listaDeProductos.get(i).getCodProducto() == cod) {
+		    	unProducto = listaDeProductos.get(i);
+		    }
+		}
+		return unProducto;
+	}
+	
+	@Override
+	public void modificarProducto(Producto productoAModificar) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < listaDeProductos.size(); i++){
+		    if (listaDeProductos.get(i).getCodProducto() == productoAModificar.getCodProducto()) {
+		    	listaDeProductos.set(i, productoAModificar);
+		    }
+		}
+		
+	}
 	/**
 	 * @Override
 	public void eliminarProducto(int id) {
@@ -89,6 +105,7 @@ public class ProductoServiceImp implements IProductoService {
 	}}
 	 * 
 	 * */
+
 	
 	
 	
