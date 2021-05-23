@@ -18,10 +18,14 @@ import ar.edu.unju.edm.service.IProductoService;
 @Controller
 public class ProductoController {
 	private static final Log LARA = LogFactory.getLog(ProductoController.class);
-@Autowired
-@Qualifier("otroImp")
-IProductoService iProductoService;
+//@Autowired
+//@Qualifier("otroImp")
+//IProductoService iProductoService;
 	
+@Autowired
+@Qualifier("ProductoServiceImp")
+//@Qualifier("productoServiceMySQL")
+IProductoService iProductoService;
 
 
 	@GetMapping("/producto/mostrar")
