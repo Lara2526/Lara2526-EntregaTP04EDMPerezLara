@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
@@ -14,12 +15,14 @@ import ar.edu.unju.edm.service.IProductoService;
 
 import ar.edu.unju.edm.util.ListadoProducto;
 @Service
+@Qualifier("otroImp")
 public class ProductoServiceImp implements IProductoService {
 	
 	private static final Log LOGGER = LogFactory.getLog(ProductoServiceImp.class);
 	//Como se hace la solucion del problema
 	
 	@Autowired
+//
 	Producto unProducto;
 	
 	//estructura que guarda

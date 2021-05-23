@@ -96,6 +96,11 @@ public class ClienteController {
 	}			
 	return "redirect:/cliente/mostrar";
 	}
+	
+	@GetMapping("/retirar")
+	public String retirar() {
+		return "redirect:/cliente/mostrar";
+	}
 }
 
 
