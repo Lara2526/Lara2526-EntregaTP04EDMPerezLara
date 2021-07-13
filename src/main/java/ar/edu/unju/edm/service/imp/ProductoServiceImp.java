@@ -16,7 +16,7 @@ import ar.edu.unju.edm.service.IProductoService;
 
 import ar.edu.unju.edm.util.ListadoProducto;
 @Service
-@Qualifier("ProductoServiceImp")
+//@Qualifier("productoserviceimp")
 public class ProductoServiceImp implements IProductoService {
 	
 	private static final Log LOGGER = LogFactory.getLog(ProductoServiceImp.class);
@@ -120,6 +120,14 @@ public class ProductoServiceImp implements IProductoService {
 		    }
 		}
 		
+	}
+
+
+
+	@Override
+	public Producto obtenerProductoCodigo(Integer codigo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

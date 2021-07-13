@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.edm.model.Cliente;
+import ar.edu.unju.edm.model.Producto;
 
 @Repository
 //public interface IClienteDAO extends *JpaRepository*<Cliente, Integer> { //es lo mismo, el crud es mas sencillo  
@@ -16,7 +17,7 @@ public interface IClienteDAO extends CrudRepository<Cliente, Integer> {
 	@Query("from Cliente c order by c.nroDocumento")
 	public List<Cliente> obtenerClientes();
 	//public Optional<Cliente> findByNroDocumento(int dni);
-
+	public Cliente findBynroDocumento(int dni);
 }
 
 

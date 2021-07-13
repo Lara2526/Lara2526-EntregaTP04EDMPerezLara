@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.edm.model.Cliente;
+import ar.edu.unju.edm.model.Producto;
 import ar.edu.unju.edm.repository.IClienteDAO;
 import ar.edu.unju.edm.service.IClienteService;
 
 @Service
-@Qualifier("ClienteServiceImpMySQL")
+@Qualifier("impmysql")
 
 public class ClienteServiceMySQL implements IClienteService {
 
@@ -44,19 +45,36 @@ public class ClienteServiceMySQL implements IClienteService {
 	@Override
 	public Cliente encontrarUnCliente(int dni) {
 		// TODO Auto-generated method stub
-		return null;
+		return clienteDAO.findBynroDocumento(dni);
 	}
 
 	@Override
 	public void modificarCliente(Cliente clienteModificado) {
 		// TODO Auto-generated method stub
+		Cliente clienteAModificado = clienteDAO.findBynroDocumento( clienteModificado.getNroDocumento());  
+		cambiarcliente( clienteModificado, clienteAModificado);
+		clienteDAO.save(clienteAModificado);
 		
 	}
-
+	private void cambiarcliente(Cliente clienteModificado, Cliente clienteAModificado) {
+		// TODO Auto-generated method stub
+		clienteAModificado.setNombreApellido(clienteModificado.getNombreApellido());
+		clienteAModificado.setNroDocumento(clienteModificado.getNroDocumento());
+		clienteAModificado.setFechaNacimiento(clienteModificado.getFechaNacimiento());
+		clienteAModificado.setCodigoAreaTelefono(clienteModificado.getCodigoAreaTelefono());;
+		clienteAModificado.setDatosAdicionales(clienteModificado.getDatosAdicionales());
+		clienteAModificado.setEmail(clienteModificado.getEmail());
+		clienteAModificado.setFechaUltimaCompra(clienteModificado.getFechaUltimaCompra());;
+		clienteAModificado.setNumTelefono(clienteAModificado.getNumTelefono());
+		clienteAModificado.setTipoDocumento(clienteAModificado.getTipoDocumento());
+		
+		
+	}
 	@Override
 	public void eliminarCliente(int id) {
 		// TODO Auto-generated method stub
-		
+		Cliente clienteAEliminar= clienteDAO.findBynroDocumento(id);
+		clienteDAO.delete(clienteAEliminar);
 	}
 
 }

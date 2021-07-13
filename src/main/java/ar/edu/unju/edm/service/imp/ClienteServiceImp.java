@@ -14,7 +14,7 @@ import ar.edu.unju.edm.service.IClienteService;
 import ar.edu.unju.edm.util.ListadoClientes;
 
 @Service
-@Qualifier("clienteServiceImp")
+@Qualifier("clienteserviceimp")
 public class ClienteServiceImp implements IClienteService{
 
 	private List<Cliente> listadoClientes = ListadoClientes.clientes;

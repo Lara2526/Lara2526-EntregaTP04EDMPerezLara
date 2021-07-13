@@ -1,5 +1,7 @@
 package ar.edu.unju.edm.controller;
 
+import javax.validation.Valid;
+
 //import java.time.LocalDate;
 //import java.time.Period;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 //import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +27,11 @@ public class ClienteController {
 
 	//@Autowired("unImp")
 	@Autowired
+//	@Qualifier("productoservicemysql")
 	//LIST
-//	@Qualifier("clienteServiceImp")
+	//@Qualifier("clienteServiceImp")
 	//BD MySQL
-	@Qualifier("ClienteServiceImpMySQL")
+	@Qualifier("impmysql")
 	IClienteService clienteService;
 
 	
@@ -42,12 +46,19 @@ public class ClienteController {
 	}
 
 	@PostMapping("/cliente/guardar")
-	public String guardarNuevoProducto(@ModelAttribute("unCliente") Cliente nuevoCliente, Model model) {
+	public String guardarNuevoProducto(@Valid @ModelAttribute("unCliente") Cliente nuevoCliente,BindingResult resultado, Model model) {
 		LOGGER.info("METHOD: ingresando el metodo Guardar");	
+		if(resultado.hasErrors())
+		{
+			model.addAttribute("unCliente", nuevoCliente);
+			model.addAttribute("clientes", clienteService.obtenerTodosClientes());
+			return ("cliente");
+		}
+		else {
 		clienteService.guardarCliente(nuevoCliente);		
 		LOGGER.info("Tamaño del Listado: "+ clienteService.obtenerTodosClientes().size());
 		//trabajarConFecha();
-		return "redirect:/cliente/mostrar";
+		return "redirect:/cliente/mostrar";}
 	}
 	@GetMapping("/cliente/editar/{nroDocumento}")
 	public String editarCliente(Model model, @PathVariable(name="nroDocumento") int dni) throws Exception 

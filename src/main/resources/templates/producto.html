@@ -20,6 +20,7 @@
 				<div class="col-sm-10">
 					<input type="number" id="codigo" th:field="*{codProducto}"
 						class="form-control">
+						 <div class="alert alert-danger " th:if="${#fields.hasErrors('codProducto')}"th:errors="*{codProducto}">Error codigo</div>
 				</div>
 			</div>
 
@@ -28,14 +29,16 @@
 				<div class="col-sm-10">
 					<input type="text" id="nombre" th:field="*{nombre}"
 						class="form-control">
+						<div class="alert alert-danger " th:if="${#fields.hasErrors('nombre')}"th:errors="*{nombre}">Error nombre</div>
 				</div>
 			</div>
 
 			<div class="form-group row">
 				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
 				<div class="col-sm-10">
-					<input type="number" id="precio" th:field="*{precio}"
+					<input type="number" id="precios" th:field="*{precio}"
 						class="form-control">
+						<div class="alert alert-danger " th:if="${#fields.hasErrors('precio')}"th:errors="*{precio}">Error precio</div>
 				</div>
 			</div>
 
@@ -50,15 +53,18 @@
 			<div class="form-group row">
 				<label for="stock" class="col-sm-2 col-form-label">Stock</label>
 				<div class="col-sm-10">
-					<input type="number" id="stock" th:field="*{stock}"
+					<input type="number" id="stocks" th:field="*{stock}"
 						class="form-control">
+						<div class="alert alert-danger " th:if="${#fields.hasErrors('stock')}"th:errors="*{stock}">Error stock</div>
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
 				<div class="col-sm-10">
 					<input type="text" id="descripcion" th:field="*{descripcion}"
 						class="form-control">
+						<div class="alert alert-danger " th:if="${#fields.hasErrors('descripcion')}"th:errors="*{descripcion}">Error descripcion</div>
 				</div>
 			</div>
 

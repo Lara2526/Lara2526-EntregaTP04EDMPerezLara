@@ -5,16 +5,26 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.util.Date;
 import java.time.Period;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotNull;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+
+
 
 @Entity
 @Table (name="CLIENTES")
@@ -23,6 +33,10 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+	private Integer idCliente;
+	@Column
+	@Min(100000)
+	@Max(99999999)
 	private int nroDocumento;
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -35,18 +49,26 @@ public class Cliente {
 	@Column
 	private String tipoDocumento;
 	@Column
+	@NotBlank(message="Debe incluir su Nombre y Apellido")
 	private String nombreApellido;
 	@Column
 	private int codigoAreaTelefono;
 	@Column
+	@Min(1000000)
+	@Max(9999999)
 	private int numTelefono;
 	@Column
 	private String email;
 	@Column
+	@NotBlank(message="Debe incluir contraseña")
+	
 	private String password;
 //	private int edad;
 	@Column
 	private String datosAdicionales;
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<Venta> ventasrealizadas;
+	
 	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
@@ -144,6 +166,12 @@ public class Cliente {
 		this.email = email;
 	}
 
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
 	public String getTiempoDesdeUltimaCompra() {
 		LocalDate fechaActual = LocalDate.now();
 	

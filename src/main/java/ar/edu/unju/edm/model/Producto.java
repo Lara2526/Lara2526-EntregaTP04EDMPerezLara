@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
 //entidad esterotipo 
@@ -16,14 +17,20 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+	private Integer idProducto;
+	@Column
+
 	private int codProducto;
 	@Column
+	@NotBlank(message="debe tener nombre")
 	private String nombre;
 	@Column
+
 	private double precio;
 	@Column
 	private String marca;
 	@Column
+
 	private int stock;
 	//agregar descripcion
 	@Column

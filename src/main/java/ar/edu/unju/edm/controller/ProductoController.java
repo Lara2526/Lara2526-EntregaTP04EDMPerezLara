@@ -1,11 +1,14 @@
 package ar.edu.unju.edm.controller;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ar.edu.unju.edm.model.Producto;
 import ar.edu.unju.edm.service.IProductoService;
 
+
 @Controller
 public class ProductoController {
 	private static final Log LARA = LogFactory.getLog(ProductoController.class);
@@ -23,8 +27,7 @@ public class ProductoController {
 //IProductoService iProductoService;
 	
 @Autowired
-@Qualifier("ProductoServiceImp")
-//@Qualifier("productoServiceMySQL")
+@Qualifier("prodmysql")
 IProductoService iProductoService;
 
 
@@ -35,19 +38,31 @@ IProductoService iProductoService;
 		return("producto");
 	}
 	@PostMapping("/producto/guardar")
-	public String nuevoUsuarioPost(@ModelAttribute("unProducto") Producto nuevoProducto, Model model) {
+	public String nuevoUsuarioPost(@Valid @ModelAttribute("unProducto") Producto nuevoProducto,BindingResult resultado, Model model) {
+		if(resultado.hasErrors())
+		{
+			model.addAttribute("unProducto", nuevoProducto);
+			model.addAttribute("productos", iProductoService.obtenerTodosProductos());
+			return ("producto");
+		}
+		else {
+		
 		iProductoService.guardarProducto(nuevoProducto);
 		System.out.println(iProductoService.obtenerTodosProductos().get(0).getMarca());
 	
 		LARA.error("solo de prueba");
 		return "redirect:/producto/mostrar";
+		}
 	}
 	@GetMapping("/producto/editar/{codProducto}")
 	public String editarCliente(Model model, @PathVariable(name="codProducto") int cod) throws Exception 
 	{
 		try {
+			LARA.error("ingrsando a buscar producto");
 			Producto productoEncontrado = iProductoService.encontrarUnProducto(cod);
+			LARA.error("encontrado"+productoEncontrado.getNombre());
 			model.addAttribute("unProducto", productoEncontrado);
+			model.addAttribute("productos",iProductoService.obtenerTodosProductos());
 			model.addAttribute("editMode", "true");
 		}
 		catch (Exception e) {
