@@ -40,14 +40,14 @@ public class VentaController {
 
 	
 	@GetMapping("/producto/vender/{codproducto}")
-	public String realizarVenta(Model model, @PathVariable(name="codproducto") Integer codproducto) throws Exception {
+	public String realizarVenta(Model model, @PathVariable(name="codproducto") int codproducto) throws Exception {
 		Venta venta = new Venta();
 		try {
 			productoSeleccionado = iProductoService.obtenerProductoCodigo(codproducto);
 			venta = iVenta.crearVenta();
 			venta.setProducto(productoSeleccionado);
 			model.addAttribute("venta", venta);
-			model.addAttribute("clientes", iClienteService.obtenerTodosClientes());
+		//	model.addAttribute("clientes", iClienteService.obtenerTodosClientes());
 		}
 		catch (Exception e) {
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());

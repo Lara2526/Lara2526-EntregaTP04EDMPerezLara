@@ -54,8 +54,8 @@ public class Cliente {
 	@Column
 	private int codigoAreaTelefono;
 	@Column
-	@Min(1000000)
-	@Max(9999999)
+	//@Min(1000000)
+	//@Max(9999999)
 	private int numTelefono;
 	@Column
 	private String email;

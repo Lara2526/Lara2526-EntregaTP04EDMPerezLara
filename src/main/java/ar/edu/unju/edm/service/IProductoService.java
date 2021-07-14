@@ -20,5 +20,5 @@ public interface IProductoService {
 	public Producto encontrarUnProducto(int cod);
 	public void modificarProducto(Producto productoAModificar);
 	public void eliminarProducto(int id);
-	public Producto obtenerProductoCodigo(Integer codigo);
+	public Producto obtenerProductoCodigo(int codigo);
 }

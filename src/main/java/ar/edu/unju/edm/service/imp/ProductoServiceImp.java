@@ -125,7 +125,7 @@ public class ProductoServiceImp implements IProductoService {
 
 
 	@Override
-	public Producto obtenerProductoCodigo(Integer codigo) {
+	public Producto obtenerProductoCodigo(int codigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
