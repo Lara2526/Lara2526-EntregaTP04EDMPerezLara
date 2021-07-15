@@ -12,11 +12,11 @@
 
 </head>
 <body class="p1">
-	<div th:insert="layouts/header :: header"></div>
+	
 	<div class="bloque d-flex align-items-center justify-content-end">
-	<div class="col-md-2">
-	<form id="formProducto"  method="post"  >
-	<h4>Formulario de Carga de Cliente</h4>
+
+	<form class="inicio"id="formProducto"  method="post"  >
+	<h4>Iniciar </h4>
 		<div class="form-group ">		
 			<label for="idusuario" >Usuario</label> 
 			<input type="text"	id="idusuario" class="form-control" >
@@ -29,7 +29,7 @@
 
 	</form>
 	
-	</div>
+
 	</div>
 	<div th:insert="layouts/footer :: footer"></div>
 		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"	type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>

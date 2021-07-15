@@ -112,8 +112,9 @@
 			<table class="table"  >
 				<thead class="thead-pink">
 				<tr>
-					<th >Tipo </th>
+					
 					<th class="columna">Nro Doc</th>
+					<th >Tipo </th>
 					<th>ApellidoyNombre</th>
 					<th>e-mail</th>
 					<th>fecha nac</th>
@@ -129,8 +130,9 @@
 					<td colspan="10">No hay clientes en el listado</td>
 				</tr>
 				<tr th:each="cli : ${clientes}">
-					<!--  <td th:text="${cli.tipoDocumento}"></td>-->
+					
 					<td class="columna" th:text="${cli.nroDocumento}"></td>
+					<td th:text="${cli.tipoDocumento}"></td>
 					<td th:text="${cli.nombreApellido}">
 					<td th:text="${cli.email}"></td>
 					<!--	<td th:text="${cli.fechaNacimiento}"></td>-->

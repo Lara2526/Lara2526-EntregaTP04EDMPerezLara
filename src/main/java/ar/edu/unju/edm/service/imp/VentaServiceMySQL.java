@@ -19,8 +19,8 @@ public class VentaServiceMySQL implements IVentaService{
 	IVentaDAO iVentaDAO;
 	@Override
 	public void guardarVenta(Venta unaVenta) {
-		//LocalDate DATE = LocalDate.now();
-		//unaVenta.setFechaVenta(DATE);
+		LocalDate DATE = LocalDate.now();
+		unaVenta.setFechaVenta(DATE);
 		iVentaDAO.save(unaVenta);
 		
 	}
