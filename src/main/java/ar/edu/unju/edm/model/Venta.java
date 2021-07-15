@@ -23,7 +23,7 @@ public class Venta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Integer idVentas;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idProducto")
 	private Producto producto;
 	@ManyToOne
@@ -34,8 +34,11 @@ public class Venta {
 	private LocalDate fechaVenta;
 	@Column
 	private Integer cantProducto;
-	public Producto getProducto() {
-	return producto;
+	
+	
+	
+public Producto getProducto() {
+return producto;
 }
 public void setProducto(Producto producto) {
 	this.producto = producto;

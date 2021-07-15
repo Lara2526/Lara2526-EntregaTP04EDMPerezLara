@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 //import java.util.Date;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -67,9 +68,15 @@ public class Cliente {
 	@Column
 	private String datosAdicionales;
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Venta> ventasrealizadas;
+	private List<Venta> ventasrealizadas ;
 	
 	
+	public List<Venta> getVentasrealizadas() {
+		return ventasrealizadas;
+	}
+	public void setVentasrealizadas(List<Venta> ventasrealizadas) {
+		this.ventasrealizadas = ventasrealizadas;
+	}
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}

@@ -19,18 +19,17 @@ import ar.edu.unju.edm.service.IVentaService;
 public class VentaController {
 	
 	@Autowired
-//@Qualifier("ProductoServiceMySQL")
 	@Qualifier("prodmysql")
 	IProductoService iProductoService;
-	
+	@Autowired
+	@Qualifier("impmysql")
+	IClienteService iClienteService;
 	@Autowired
 	Producto productoSeleccionado;
 	
 	@Autowired
 		IVentaService iVenta;
-	@Autowired
-	@Qualifier("impmysql")
-	IClienteService iClienteService;
+
 	
 	@GetMapping("/producto/ventas")
 	public String cargarProducto(Model model) {
@@ -39,15 +38,17 @@ public class VentaController {
 	}
 
 	
-	@GetMapping("/producto/vender/{codproducto}")
-	public String realizarVenta(Model model, @PathVariable(name="codproducto") int codproducto) throws Exception {
+	@GetMapping("/producto/vender/{codProducto}")
+	public String realizarVenta(Model model, @PathVariable(name="codProducto") Integer codProducto) throws Exception {
 		Venta venta = new Venta();
 		try {
-			productoSeleccionado = iProductoService.obtenerProductoCodigo(codproducto);
+			
+			productoSeleccionado = iProductoService.obtenerProductoCodigo(codProducto);
+			System.out.println("codigo " + codProducto);
 			venta = iVenta.crearVenta();
 			venta.setProducto(productoSeleccionado);
 			model.addAttribute("venta", venta);
-		//	model.addAttribute("clientes", iClienteService.obtenerTodosClientes());
+			model.addAttribute("clientes", iClienteService.obtenerTodosClientes());
 		}
 		catch (Exception e) {
 			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
@@ -56,7 +57,12 @@ public class VentaController {
 	}
 	@PostMapping("/producto/vender")
 	public String guardarNuevoProducto(@ModelAttribute("venta") Venta unaVenta, Model model) {
+		System.out.println("codigo " );
+		productoSeleccionado = iProductoService.obtenerProductoCodigo(unaVenta.getProducto().getCodProducto());
+		unaVenta.setProducto(productoSeleccionado);
 		iVenta.guardarVenta(unaVenta);
+	
+		System.out.println("codigo " );
 		return("redirect:/producto/ventas");
 	}
 }

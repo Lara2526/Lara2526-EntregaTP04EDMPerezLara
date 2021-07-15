@@ -86,7 +86,7 @@ public class ProductoServiceMySQL implements IProductoService{
 	productoDAO.delete(productoAEliminar);
 	}
 	@Override
-	public Producto obtenerProductoCodigo(int codigo) {
+	public Producto obtenerProductoCodigo(Integer codigo) {
 		// TODO Auto-generated method stub
 		return productoDAO.findByCodProducto(codigo);
 	}

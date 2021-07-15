@@ -49,7 +49,7 @@ public class ClienteController {
 	public String guardarNuevoProducto(@Valid @ModelAttribute("unCliente") Cliente nuevoCliente,BindingResult resultado, Model model) {
 		LOGGER.info("METHOD: ingresando el metodo Guardar");	
 		if(resultado.hasErrors())
-		{
+		{LOGGER.info("METHOD: ingresando error");	
 			model.addAttribute("unCliente", nuevoCliente);
 			model.addAttribute("clientes", clienteService.obtenerTodosClientes());
 			return ("cliente");
